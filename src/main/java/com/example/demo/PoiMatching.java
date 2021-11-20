@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PoiMatching {
-    
+
     @RequestMapping(value = "/sendCurrentLocation/{coordinates}", method = RequestMethod.GET)
     @ResponseBody
     public void getCurrentLocation(@PathVariable("coordinates") String coordinates) {
         String[] longLat = coordinates.split("-");
         System.out.println(longLat[0]+longLat[1]);
+    }
+
+    private void getAllPois() {
+
     }
 }

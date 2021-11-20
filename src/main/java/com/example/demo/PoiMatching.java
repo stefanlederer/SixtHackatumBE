@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,16 @@ public class PoiMatching {
     @Autowired
     private ApplicationContext appContext;
 
-    @GetMapping(value = "/sightseeing/{coordinates}")
+    @RequestMapping(value = "/sightseeing/{coordinates}")
     @ResponseBody
-    public String sightseeing(@PathVariable("coordinates") String coordinates, Model model) {
+    public ModelAndView sightseeing(@PathVariable("coordinates") String coordinates) {
+        ModelAndView model = new ModelAndView();
         String[] longLat = coordinates.split("-");
         System.out.println(longLat[0]+longLat[1]);
         List<PoiEntity> poiEntitiesNearby = matchPoiToCurrentLocation(longLat[0], longLat[1]);
-        model.addAttribute("poiEntities", poiEntitiesNearby);
-        return "Sightseeing";
+        model.addObject("poiEntities", poiEntitiesNearby);
+        model.setViewName("sightseeing");
+        return model;
     }
 
     private List<PoiEntity> getAllPois() {

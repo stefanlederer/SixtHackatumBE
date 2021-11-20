@@ -1,7 +1,7 @@
 package com.example.demo.control.services;
 
 import com.example.demo.control.repos.UserRepository;
-import com.example.demo.entities.UserEntity;
+import com.example.demo.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserEntity save(UserEntity chatroomEntity) {
-        return userRepository.save(chatroomEntity);
+    public UserEntity save(UserEntity userEntity) {
+        return userRepository.save(userEntity);
     }
 
     @Override

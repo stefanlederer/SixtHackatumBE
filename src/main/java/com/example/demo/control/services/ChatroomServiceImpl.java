@@ -1,14 +1,14 @@
 package com.example.demo.control.services;
 
 import com.example.demo.control.repos.ChatroomRepository;
-import com.example.demo.entities.ChatroomEntity;
+import com.example.demo.model.ChatroomEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @Transactional
-@Service("ChatroomService")
+@Service("chatroomService")
 public class ChatroomServiceImpl implements ChatroomService {
 
     @Autowired

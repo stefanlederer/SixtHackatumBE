@@ -12,7 +12,7 @@ import java.io.IOException;
 public class OrderController {
 
     @GetMapping("/order")
-    public String main(Model model) {
+    public String order(Model model) {
         return "Homescreen";
     }
 
@@ -25,5 +25,10 @@ public class OrderController {
         QrCodeGenerator.createQR(name, qrCodePath + "/" + name + ".png", 200, 200);
         model.addAttribute("name", "/qrCodes/" + name + ".png");
         return "QrCode";
+    }
+
+    @GetMapping("/menu")
+    public String menu(Model model) {
+        return "Menu";
     }
 }

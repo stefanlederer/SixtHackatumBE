@@ -12,7 +12,9 @@ public class ChatroomEntity {
     private long id;
     @ManyToMany
     private List<UserEntity> users;
+
     private String name;
+    private String link;
 
     public ChatroomEntity() {
         super();
@@ -37,5 +39,25 @@ public class ChatroomEntity {
 
     public void setName() {
         this.name = name;
+    }
+
+    public String getLink() {
+        return "/chatroom/" + id;
+    }
+
+    public boolean addUser(UserEntity user){
+        if (!users.contains(user) && user != null) {
+            users.add(user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeUser(UserEntity user){
+        if (users.contains(user) && user != null) {
+            users.add(user);
+            return true;
+        }
+        return false;
     }
 }

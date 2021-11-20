@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!-- Compiled and minified CSS -->
@@ -12,31 +12,25 @@
 <body>
 <main id="chatroomOverview">
     <div class="chatroomOverview-content">
-        <table id="roomdata">
+        <table>
             <thead>
-            <th>Room Topic</th>
-            <th>Join</th>
+            <tr>
+                <th>Topic</th>
+                <th>Join Room</th>
+            </tr>
             </thead>
             <tbody>
+            <tr th:each="room : ${rooms}">
+                <td th:text="${room.getName()}">&nbsp;</td>
+                <td><a th:href="${room.getLink()}">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Join</button>
+                </a></td>
+            </tr>
             </tbody>
         </table>
     </div>
 </main>
 </body>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script>
-    $(function () {
-        $.getJSON('rooms.json', function (data) {
-            $.each(data.rooms, function (i, f) {
-                var tblRow = "<tr>" + "<td>" + f.topic + "</td>   " +
-                    "<td><button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\" onclick='location.href = \"" + f.link + "\"'>" +
-                    "<i class=\"material-icons right\">Join room</i></button></td></tr>"
-                $(tblRow).appendTo("#roomdata tbody");
-            });
-
-        });
-    });
-</script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>

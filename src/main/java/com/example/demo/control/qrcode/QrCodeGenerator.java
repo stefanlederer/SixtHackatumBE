@@ -11,8 +11,7 @@ import java.io.IOException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 
 public class QrCodeGenerator {
-    public static void createQR(String data, String path,
-                                int height, int width)
+    public static void createQR(String data, String path, int height, int width)
             throws WriterException, IOException {
 
         BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes("UTF-8"), "UTF-8"),

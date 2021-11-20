@@ -2,6 +2,9 @@ package com.example.demo;
 
 import com.example.demo.control.qrcode.QrCodeGenerator;
 import com.google.zxing.WriterException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,9 @@ import java.io.IOException;
 @Controller
 public class MainController {
 
+    @Autowired
+    private ApplicationContext appContext;
+
     @GetMapping("/order")
     public String order(Model model) {
         return "Homescreen";
@@ -18,6 +24,7 @@ public class MainController {
 
     @GetMapping("/getQrCode")
     public String createQrCode(Model model) throws IOException, WriterException {
+        //ToDo: change this!
         String qrCodePath = "src/main/resources/static/qrCodes";
         int userId = 1234;
         long currentTime = System.currentTimeMillis();

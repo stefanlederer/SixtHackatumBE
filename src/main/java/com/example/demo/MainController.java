@@ -41,11 +41,4 @@ public class MainController {
     public String chatroomOverview(Model model) {
         return "ChatroomOverview";
     }
-
-    @RequestMapping(value = "/sendCurrentLocation/{coordinates}", method = RequestMethod.GET)
-    @ResponseBody
-    public void getCurrentLocation(@PathVariable("coordinates") String coordinates) {
-        String[] longLat = coordinates.split("-");
-        System.out.println(longLat[0]+longLat[1]);
-    }
 }

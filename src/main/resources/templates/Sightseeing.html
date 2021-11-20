@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- Compiled and minified CSS -->
@@ -9,12 +9,12 @@
     <title>Sightseeing</title>
 </head>
 <body>
-    <div class="row">
+    <div class="row" th:each="poiEntity : ${poiEntities}">>
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-image">
-                    <img src="images/odeonsplatz.jpg">
-                    <span class="card-title">Card Title</span>
+                    <img th:src="images/${poiEntity.url_image}">
+                    <span class="card-title" th:text="${poiEntity.name}">Card Title</span>
                     <p>
                         <a class="btn-floating  waves-effect waves-light orange left-centered" ><i class="material-icons">arrow_back</i></a>
                         <a class=" btn-floating  waves-effect waves-light orange right-centered"><i class="material-icons">arrow_forward</i></a>
@@ -23,7 +23,7 @@
 
                 </div>
                 <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                    <p th:text="${poiEntity.description}">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                 </div>
                 <div class="card-action">
                     <p class="center-align">

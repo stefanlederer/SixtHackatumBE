@@ -6,6 +6,7 @@ import com.example.demo.model.PoiEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,14 +26,12 @@ public class PoiMatching {
 
     @RequestMapping(value = "/sendCurrentLocation/{coordinates}", method = RequestMethod.GET)
     @ResponseBody
-    public void getCurrentLocation(@PathVariable("coordinates") String coordinates) {
+    public String getCurrentLocation(@PathVariable("coordinates") String coordinates, Model model) {
         String[] longLat = coordinates.split("-");
         System.out.println(longLat[0]+longLat[1]);
-        getSightseeingTours(longLat);
-    }
-
-    private void getSightseeingTours(String[] longLat) {
         List<PoiEntity> poiEntitiesNearby = matchPoiToCurrentLocation(longLat[0], longLat[1]);
+        model.addAttribute("poiEntities", poiEntitiesNearby);
+        return "Sightseeing";
     }
 
     private List<PoiEntity> getAllPois() {

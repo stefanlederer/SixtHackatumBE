@@ -58,4 +58,27 @@ body #login .login-content {
   padding-left: 30%;
   padding-right: 30%;
 }
+body #ssing {
+  background-color: black;
+  position: absolute;
+  height: 100%;
+}
+body #ssing .logo img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+body #ssing .buttons {
+  border: 50px;
+  padding: 20px 0;
+}
+body #ssing .bottom {
+  font-family: "Trirong", serif;
+  text-align: center;
+  text-align-last: center;
+  color: blue;
+}
 /*# sourceMappingURL=index.css.map */

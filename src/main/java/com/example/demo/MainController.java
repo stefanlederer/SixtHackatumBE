@@ -4,7 +4,7 @@ import com.example.demo.control.qrcode.QrCodeGenerator;
 import com.google.zxing.WriterException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -18,12 +18,12 @@ public class MainController {
 
     @GetMapping("/getQrCode")
     public String createQrCode(Model model) throws IOException, WriterException {
-        String qrCodePath = "src/main/resources/templates/qrCodes";
+        String qrCodePath = "src/main/resources/static/qrCodes";
         int userId = 1234;
         long currentTime = System.currentTimeMillis();
         String name = Integer.toString(userId) + currentTime;
         QrCodeGenerator.createQR(name, qrCodePath + "/" + name + ".png", 200, 200);
-        model.addAttribute("name", "/qrCodes/" + name + ".png");
+        model.addAttribute("name", "qrCodes/" + name + ".png");
         return "QrCode";
     }
 
@@ -40,5 +40,12 @@ public class MainController {
     @GetMapping("/chatroomOverview")
     public String chatroomOverview(Model model) {
         return "ChatroomOverview";
+    }
+
+    @RequestMapping(value = "/sendCurrentLocation/{coordinates}", method = RequestMethod.GET)
+    @ResponseBody
+    public void getCurrentLocation(@PathVariable("coordinates") String coordinates) {
+        String[] longLat = coordinates.split("-");
+        System.out.println(longLat[0]+longLat[1]);
     }
 }

@@ -22,7 +22,7 @@ public class OrderController {
         int userId = 1234;
         long currentTime = System.currentTimeMillis();
         String name = Integer.toString(userId) + currentTime;
-        QrCodeGenerator.createQR(name, qrCodePath + "/" + name + ".png", "utf-8", 200, 200);
+        QrCodeGenerator.createQR(name, qrCodePath + "/" + name + ".png", 200, 200);
         model.addAttribute("name", "/qrCodes/" + name + ".png");
         return "QrCode";
     }

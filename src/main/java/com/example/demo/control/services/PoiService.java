@@ -8,5 +8,5 @@ public interface PoiService {
 
     PoiEntity getPoiEntityById(long id);
 
-    PoiEntity getAll();
+    Iterable<PoiEntity> getAll();
 }

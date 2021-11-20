@@ -21,11 +21,11 @@ public class PoiServiceImpl implements PoiService {
 
     @Override
     public PoiEntity getPoiEntityById(long id) {
-        return null;
+        return poiRepository.findById(id).get();
     }
 
     @Override
-    public PoiEntity getAll() {
-        return null;
+    public Iterable<PoiEntity> getAll() {
+        return poiRepository.findAll();
     }
 }

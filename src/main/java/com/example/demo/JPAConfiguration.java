@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.control.services.IdentificationService;
+import com.example.demo.control.services.IdentificationServiceImpl;
 import com.example.demo.control.services.UserService;
 import com.example.demo.control.services.UserServiceImpl;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -19,8 +21,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JPAConfiguration {
 
     @Bean
-    public UserService userService() {
+    public UserService getUserService() {
         return new UserServiceImpl();
+    }
+
+    @Bean
+    public IdentificationService getIdentificationService() {
+        return new IdentificationServiceImpl();
     }
 
 }

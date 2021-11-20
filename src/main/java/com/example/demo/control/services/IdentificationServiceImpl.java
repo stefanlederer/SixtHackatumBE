@@ -1,9 +1,7 @@
 package com.example.demo.control.services;
 
 import com.example.demo.control.repos.IdentificationRepository;
-import com.example.demo.control.repos.UserRepository;
-import com.example.demo.entities.IdentificationEntity;
-import com.example.demo.entities.UserEntity;
+import com.example.demo.model.IdentificationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

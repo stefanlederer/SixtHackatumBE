@@ -1,6 +1,6 @@
 package com.example.demo.control.services;
 
-import com.example.demo.entities.IdentificationEntity;
+import com.example.demo.model.IdentificationEntity;
 
 public interface IdentificationService {
 

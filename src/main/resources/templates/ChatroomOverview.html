@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="less/index.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Choose your chatroom</title>
+</head>
+<body>
+<main id="chatroomOverview">
+    <div class="chatroomOverview-content">
+        <table id="roomdata">
+            <thead>
+            <th>Room Topic</th>
+            <th>Join</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+    $(function () {
+        $.getJSON('rooms.json', function (data) {
+            $.each(data.rooms, function (i, f) {
+                var tblRow = "<tr>" + "<td>" + f.topic + "</td>   " +
+                    "<td><button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\" onclick='location.href = \"" + f.link + "\"'>" +
+                    "<i class=\"material-icons right\">Join room</i></button></td></tr>"
+                $(tblRow).appendTo("#roomdata tbody");
+            });
+
+        });
+    });
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>

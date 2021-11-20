@@ -8,36 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class ChatroomController {
 
     @Autowired
     private ApplicationContext appContext;
 
-    @GetMapping("/chatroomOverview")
-    public String chatroomOverview(Model model) {
-        List<ChatroomEntity> array = appContext.getBean(ChatroomService.class).getAllEntities();
-
-        model.addAttribute("rooms", array);
-        return "ChatroomOverview";
-    }
-
-    @GetMapping(value="/chatroom/{id}")
+    @RequestMapping(value="/chatroom/{id}")
     @ResponseBody
-    public String chatroom(@PathVariable(name = "id") Long roomId, Model model)
+    public ModelAndView chatroom(@PathVariable(name = "id") Long roomId)
     {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("chatroom");
+
         UserEntity currentUser = appContext.getBean(UserService.class).getUserEntityById(0);
         ChatroomEntity chatroomEntity = appContext.getBean(ChatroomService.class).getChatEntityById(roomId);
         if (chatroomEntity.addUser(currentUser)){
-            model.addAttribute("newUser", true);
+            modelAndView.addObject("newUser", true);
         }
-        model.addAttribute("room", chatroomEntity);
-        return "Chatroom " + chatroomEntity.getName();
+        modelAndView.addObject("roomname", chatroomEntity.getName());
+
+        return modelAndView;
     }
 }

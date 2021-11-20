@@ -20,5 +20,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:application.properties")
 public class JPAConfiguration {
 
-
 }

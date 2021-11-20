@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- Compiled and minified CSS -->
@@ -10,6 +10,9 @@
 <body>
 <main id="chatroom">
     <div class="chatroom-content">
+        <div class="chatroom-name">
+            <p th:utext="'You are talking in ' + ${roomname}"></p>
+        </div>
         <div class="userinfo">
             <img src="images/profile.png">
             <p>Name</p>
@@ -40,8 +43,8 @@
         <hr>
     </div>
     <div class="chatroom-sendmessage">
-        <input type="text"/>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <input type="text" id="text-input"/>
+        <button class="btn waves-effect waves-light" type="submit" name="action" onclick="send()">Submit
             <i class="material-icons right"></i>
         </button>
     </div>

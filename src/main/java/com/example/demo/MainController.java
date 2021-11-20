@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.io.IOException;
 
 @Controller
-public class OrderController {
+public class MainController {
 
     @GetMapping("/order")
     public String order(Model model) {

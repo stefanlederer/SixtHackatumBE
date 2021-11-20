@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import com.example.demo.control.qrcode.QrCodeGenerator;
+import com.example.demo.control.services.ChatroomService;
+import com.example.demo.model.ChatroomEntity;
 import com.google.zxing.WriterException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -46,6 +49,9 @@ public class MainController {
 
     @GetMapping("/chatroomOverview")
     public String chatroomOverview(Model model) {
+        List<ChatroomEntity> array = appContext.getBean(ChatroomService.class).getAllEntities();
+
+        model.addAttribute("rooms", array);
         return "ChatroomOverview";
     }
 }

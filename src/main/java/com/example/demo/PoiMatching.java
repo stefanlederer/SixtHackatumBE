@@ -7,10 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +21,9 @@ public class PoiMatching {
     @Autowired
     private ApplicationContext appContext;
 
-    @RequestMapping(value = "/sendCurrentLocation/{coordinates}", method = RequestMethod.GET)
+    @GetMapping(value = "/sightseeing/{coordinates}")
     @ResponseBody
-    public String getCurrentLocation(@PathVariable("coordinates") String coordinates, Model model) {
+    public String sightseeing(@PathVariable("coordinates") String coordinates, Model model) {
         String[] longLat = coordinates.split("-");
         System.out.println(longLat[0]+longLat[1]);
         List<PoiEntity> poiEntitiesNearby = matchPoiToCurrentLocation(longLat[0], longLat[1]);
@@ -46,9 +43,9 @@ public class PoiMatching {
         List<PoiEntity> poiEntityList = getAllPois();
         List<PoiEntity> poiEntitiesNearby = new ArrayList<PoiEntity>();
         for(PoiEntity poiEntity : poiEntityList) {
-            String poiEntityLat = reduceCoordinateRadius(poiEntity.getLat(), radius);
-            String currentLonNew = reduceCoordinateRadius(currentLon, radius);
             String poiEntityLon = reduceCoordinateRadius(poiEntity.getLon(), radius);
+            String currentLonNew = reduceCoordinateRadius(currentLon, radius);
+            String poiEntityLat = reduceCoordinateRadius(poiEntity.getLat(), radius);
             String currentLatNew = reduceCoordinateRadius(currentLat, radius);
             if (poiEntityLat.equals(currentLonNew) &&
             poiEntityLon.equals(currentLatNew)) {

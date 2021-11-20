@@ -20,14 +20,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:application.properties")
 public class JPAConfiguration {
 
-    @Bean
-    public UserService getUserService() {
-        return new UserServiceImpl();
-    }
-
-    @Bean
-    public IdentificationService getIdentificationService() {
-        return new IdentificationServiceImpl();
-    }
 
 }

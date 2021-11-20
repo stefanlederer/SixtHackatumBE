@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!-- Compiled and minified CSS -->
@@ -13,8 +13,8 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-image">
-                    <img th:src="images/${poiEntity.url_image}">
-                    <span class="card-title" th:text="${poiEntity.name}">Card Title</span>
+                    <img th:src="${poiEntity.getUrlImage()}">
+                    <span class="card-title" th:text="${poiEntity.getName()}">Card Title</span>
                     <p>
                         <a class="btn-floating  waves-effect waves-light orange left-centered" ><i class="material-icons">arrow_back</i></a>
                         <a class=" btn-floating  waves-effect waves-light orange right-centered"><i class="material-icons">arrow_forward</i></a>
@@ -23,7 +23,7 @@
 
                 </div>
                 <div class="card-content">
-                    <p th:text="${poiEntity.description}">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                    <p th:text="${poiEntity.getDescription()}">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
                 </div>
                 <div class="card-action">
                     <p class="center-align">
@@ -37,6 +37,4 @@
 
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/geolocation.js"></script>
 </html>

@@ -39,13 +39,9 @@ public class MainController {
         return "Menu";
     }
 
-    @GetMapping("/sightseeing")
+    /*@GetMapping("/sightseeing")
     public String seightseeing(Model model) {
         return "Sightseeing";
-    }
+    }*/
 
-    @GetMapping("/chatroomOverview")
-    public String chatroomOverview(Model model) {
-        return "ChatroomOverview";
-    }
 }

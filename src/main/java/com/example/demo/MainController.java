@@ -50,4 +50,14 @@ public class MainController {
         model.addAttribute("rooms", array);
         return "ChatroomOverview";
     }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        return "registration";
+    }
 }

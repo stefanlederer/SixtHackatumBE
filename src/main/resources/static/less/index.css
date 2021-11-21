@@ -211,4 +211,35 @@ body #registration .register {
   background-color: floralwhite;
   color: black;
 }
+body #chatroomOverview {
+  background-color: #231f20;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+body #chatroomOverview .chatroomOverview-content {
+  text-overline-color: orange ;
+}
+body #chatroomOverview .chatroomOverview-content thead {
+  color: white;
+  border-bottom: 1px solid #ddd;
+}
+body #chatroomOverview .chatroomOverview-content thead tr {
+  width: 1%;
+}
+body #chatroomOverview .chatroomOverview-content thead tr {
+  display: compact;
+  color: white;
+  width: 1%;
+  white-space: nowrap;
+}
+body #chatroomOverview .chatroomOverview-content tbody td button {
+  background-color: #f48218;
+}
+body #chatroomOverview .chatroomOverview-content tbody tr {
+  display: compact;
+  color: white;
+  width: 1%;
+  white-space: nowrap;
+}
 /*# sourceMappingURL=index.css.map */

@@ -6,12 +6,11 @@ import com.example.demo.model.ChatroomEntity;
 import com.example.demo.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
+import org.springframework.web.util.HtmlUtils;
 
 @RestController
 public class ChatroomController {
@@ -24,7 +23,7 @@ public class ChatroomController {
     public ModelAndView chatroom(@PathVariable(name = "id") Long roomId)
     {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("chatroom");
+        modelAndView.setViewName("chatroomtest");
 
         UserEntity currentUser = appContext.getBean(UserService.class).getUserEntityById(0);
         ChatroomEntity chatroomEntity = appContext.getBean(ChatroomService.class).getChatEntityById(roomId);
@@ -35,4 +34,13 @@ public class ChatroomController {
 
         return modelAndView;
     }
+
+    @MessageMapping("/chatsender")
+    @SendTo("/topic/chatreceiver")
+    public OutMessage sendout(InMessage message) throws Exception {
+        Thread.sleep(500);
+        return new OutMessage("[User]: " + HtmlUtils.htmlEscape(message.getName()));
+    }
+
+
 }

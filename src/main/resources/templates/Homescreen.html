@@ -9,11 +9,21 @@
     <title>Get a car!</title>
 </head>
 <body>
-<div class="order-button">
-    <button th:onclick="|window.location.href='/getQrCode'|">">
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Order</a>
-    </button>
-</div>
+<main id="order-page">
+    <div class="homepage">
+        <div class="logo">
+            <img class="responsive-img centre-align" src="images/sixtblack.png" >
+        </div>
+        <div class="taxi">
+            <img class="responsive-img centre-align" src="images/robotaxi.jpeg">
+        </div>
+        <div class="text">
+            <h1 class="Big">ROBOTAXI</h1>
+            <h4 class="Smaller">Order your taxi now!</h4>
+            <h1></h1>
+            <a class="waves-effect waves-light btn-large modal-trigger" href="#modal1" th:onclick="|window.location.href='/getQrCode'|">Order</a>
+        </div>
+    </div>
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal modal-fixed-footer">
@@ -25,6 +35,7 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
     </div>
 </div>
+</main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

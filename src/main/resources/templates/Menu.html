@@ -4,20 +4,33 @@
     <meta charset="UTF-8">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="less/index.css">
+    <title>MenuScreen</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<main id="menu">
+    <div class="container">
+        <div class="logo">
+            <p></p>
+            <img class="responsive-img centre-align" src="images/sixtblack.png">
+            <h4 class="center-align"> Have a nice ride!</h4>
+        </div>
+        <div class="half1">
+            <div class = splitup>
+                <a class="waves-effect waves-light btn-large" onclick="geolocation()"><i class="material-icons left">camera_enhance</i>Sightseeing</a>
+            </div>
+        </div>
 
-    <h3 class="center-align"> <u> Have a nice ride :)</u></h3>
-    <div>
-        <a class="btn-large indigo" onclick="geolocation()">Sightseeing</a>
+        <div class="half2">
+            <div class="splitdown">
+                <a class="waves-effect waves-light btn-large" href="/chatroomOverview"><i class="material-icons left">chat</i>Chatroom</a>
+            </div>
+        </div>
     </div>
-    <p></p>
-    <div>
-        <a href="/chatroomOverview" class="btn-large indigo">Chatroom</a>
-    </div>
-
-
+</main>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -23,15 +23,13 @@ public class PoiMatching {
     private ApplicationContext appContext;
 
     @RequestMapping(value = "/sightseeing/{coordinates}")
-    @ResponseBody
-    public ModelAndView sightseeing(@PathVariable("coordinates") String coordinates) {
-        ModelAndView model = new ModelAndView();
+    public String sightseeing(@PathVariable("coordinates") String coordinates, Model model) throws Exception {
+        // model = new ModelAndView("Sightseeing");
         String[] longLat = coordinates.split("-");
         System.out.println(longLat[0]+longLat[1]);
         List<PoiEntity> poiEntitiesNearby = matchPoiToCurrentLocation(longLat[0], longLat[1]);
-        model.addObject("poiEntities", poiEntitiesNearby);
-        model.setViewName("sightseeing");
-        return model;
+        model.addAttribute("poiEntities", poiEntitiesNearby);
+        return "Sightseeing.html";
     }
 
     private List<PoiEntity> getAllPois() {
@@ -41,17 +39,17 @@ public class PoiMatching {
                         .collect(Collectors.toList());
     }
 
-    private List<PoiEntity> matchPoiToCurrentLocation(String currentLon, String currentLat) {
+    private List<PoiEntity> matchPoiToCurrentLocation(String currentLat, String currentLon) {
         int radius = 5;
         List<PoiEntity> poiEntityList = getAllPois();
         List<PoiEntity> poiEntitiesNearby = new ArrayList<PoiEntity>();
         for(PoiEntity poiEntity : poiEntityList) {
             String poiEntityLon = reduceCoordinateRadius(poiEntity.getLon(), radius);
-            String currentLonNew = reduceCoordinateRadius(currentLon, radius);
-            String poiEntityLat = reduceCoordinateRadius(poiEntity.getLat(), radius);
             String currentLatNew = reduceCoordinateRadius(currentLat, radius);
-            if (poiEntityLat.equals(currentLonNew) &&
-            poiEntityLon.equals(currentLatNew)) {
+            String poiEntityLat = reduceCoordinateRadius(poiEntity.getLat(), radius);
+            String currentLonNew = reduceCoordinateRadius(currentLon, radius);
+            if (poiEntityLat.equals(currentLatNew) &&
+            poiEntityLon.equals(currentLonNew)) {
                 poiEntitiesNearby.add(poiEntity);
             }
         }

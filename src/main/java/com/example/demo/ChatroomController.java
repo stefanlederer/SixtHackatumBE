@@ -24,15 +24,10 @@ public class ChatroomController {
 
     @RequestMapping(value="/chatroom/{id}")
     @ResponseBody
-    public ModelAndView chatroom(@PathVariable(name = "id") Long roomId)
-    {
-        ModelAndView modelAndView = new ModelAndView("forward:/chatroom2.html");
+    public ModelAndView chatroom(@PathVariable(name = "id") Long roomId) {
+        ModelAndView modelAndView = new ModelAndView("forward:/chatroom.html");
 
-        UserEntity currentUser = appContext.getBean(UserService.class).getUserEntityById(0);
         ChatroomEntity chatroomEntity = appContext.getBean(ChatroomService.class).getChatEntityById(roomId);
-        if (chatroomEntity.addUser(currentUser)){
-            modelAndView.addObject("newUser", true);
-        }
         modelAndView.addObject("roomname", chatroomEntity.getName());
 
         return modelAndView;
@@ -42,7 +37,7 @@ public class ChatroomController {
     @SendTo("/topic/chatreceiver")
     public OutMessage sendout(InMessage message) throws Exception {
         Thread.sleep(500);
-        return new OutMessage("[User]: " + HtmlUtils.htmlEscape(message.getName()));
+        return new OutMessage(HtmlUtils.htmlEscape(message.getName()));
     }
 
 

@@ -24,8 +24,9 @@ public class PoiMatching {
 
     @RequestMapping(value = "/sightseeing/{coordinates}")
     @ResponseBody
-    public ModelAndView sightseeing(@PathVariable("coordinates") String coordinates, ModelAndView modelAndView) {
-        modelAndView.setViewName("Sightseeing");
+    public ModelAndView sightseeing(@PathVariable("coordinates") String coordinates, Model model) {
+        ModelAndView modelAndView = new ModelAndView("Sightseeing");
+        modelAndView.addAllObjects(model.asMap());
         String[] longLat = coordinates.split("-");
 
         List<PoiEntity> poiEntitiesNearby = matchPoiToCurrentLocation(longLat[0], longLat[1]);

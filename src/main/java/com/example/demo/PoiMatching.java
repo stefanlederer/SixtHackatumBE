@@ -16,20 +16,22 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 
-@Controller
+@RestController
 public class PoiMatching {
 
     @Autowired
     private ApplicationContext appContext;
 
     @RequestMapping(value = "/sightseeing/{coordinates}")
-    public String sightseeing(@PathVariable("coordinates") String coordinates, Model model) throws Exception {
-        // model = new ModelAndView("Sightseeing");
+    @ResponseBody
+    public ModelAndView sightseeing(@PathVariable("coordinates") String coordinates, Model model) {
+        ModelAndView modelAndView = new ModelAndView("Sightseeing");
+        modelAndView.addAllObjects(model.asMap());
         String[] longLat = coordinates.split("-");
-        System.out.println(longLat[0]+longLat[1]);
+
         List<PoiEntity> poiEntitiesNearby = matchPoiToCurrentLocation(longLat[0], longLat[1]);
-        model.addAttribute("poiEntities", poiEntitiesNearby);
-        return "Sightseeing.html";
+        modelAndView.addObject("poiEntities", poiEntitiesNearby);
+        return modelAndView;
     }
 
     private List<PoiEntity> getAllPois() {

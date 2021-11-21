@@ -11,7 +11,7 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/app.js"></script>
+    <script src="/js/chatroom.js"></script>
 </head>
 <body onload="connect()">
 <main id="chatroom">
@@ -20,7 +20,7 @@
         enabled. Please enable Javascript and reload this page!</h2></noscript>
     <div class="chatroom-content">
         <div class="chatroom-name">
-            <p th:utext="'You are talking in ' + ${roomname}"></p>
+            <p th:text="'You are talking in ' + ${roomname}"></p>
         </div>
     </div>
     <div class="row">

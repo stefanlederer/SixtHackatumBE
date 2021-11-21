@@ -28,7 +28,7 @@ public class ChatroomController {
         ModelAndView modelAndView = new ModelAndView("forward:/chatroom.html");
 
         ChatroomEntity chatroomEntity = appContext.getBean(ChatroomService.class).getChatEntityById(roomId);
-        modelAndView.addObject("roomname", chatroomEntity.getName());
+        modelAndView.addObject("roomname", "You are talking in " + chatroomEntity.getName());
 
         return modelAndView;
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!-- Compiled and minified CSS -->
@@ -20,7 +20,7 @@
         enabled. Please enable Javascript and reload this page!</h2></noscript>
     <div class="chatroom-content">
         <div class="chatroom-name">
-            <p th:text="'You are talking in ' + ${roomname}"></p>
+            <p th:text="${roomname}"></p>
         </div>
     </div>
     <div class="row">

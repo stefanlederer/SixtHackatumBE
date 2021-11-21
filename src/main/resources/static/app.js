@@ -5,8 +5,7 @@ function setConnected(connected) {
   $("#disconnect").prop("disabled", !connected);
   if (connected) {
     $("#conversation").show();
-  }
-  else {
+  } else {
     $("#conversation").hide();
   }
   $("#chat-messages").html("");
@@ -19,7 +18,7 @@ function connect() {
     setConnected(true);
     console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/chatreceiver', function (greeting) {
-      showGreeting(JSON.parse(greeting.body).content);
+      showGreeting(JSON.parse(greeting.body).content, 'Lederer');
     });
   });
 }
@@ -33,18 +32,33 @@ function disconnect() {
 }
 
 function sendName() {
-  stompClient.send("/app/chatsender", {}, JSON.stringify({'name': $("#name").val()}));
+  stompClient.send("/app/chatsender", {}, JSON.stringify({'name': $("#text-input").val()}));
 }
 
-function showGreeting(message) {
-  $("#chat-messages").append("<tr><td>" + message + "</td></tr>");
+function showGreeting(message, name) {
+  $("#chat-messages").append("" +
+    "<div class=\"chatroom-content\">" +
+    "<div class=\"userinfo\">" +
+    "<img src=\"../static/images/profile.png\">" +
+    "<p>" + name + "</p>" +
+    "</div>" +
+    "<div class=\"usertext\">" +
+    "<p>" + message + "</p>" +
+    "</div>" +
+    "<hr></div>");
 }
 
 $(function () {
   $("form").on('submit', function (e) {
     e.preventDefault();
   });
-  $( "#connect" ).click(function() { connect(); });
-  $( "#disconnect" ).click(function() { disconnect(); });
-  $( "#send" ).click(function() { sendName(); });
+  $("#connect").click(function () {
+    connect();
+  });
+  $("#disconnect").click(function () {
+    disconnect();
+  });
+  $("#send").click(function () {
+    sendName();
+  });
 });

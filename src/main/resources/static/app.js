@@ -39,7 +39,7 @@ function showGreeting(message, name) {
   $("#chat-messages").append("" +
     "<div class=\"chatroom-content\">" +
     "<div class=\"userinfo\">" +
-    "<img src=\"../static/images/profile.png\">" +
+    "<img src=\"/images/profile.png\">" +
     "<p>" + name + "</p>" +
     "</div>" +
     "<div class=\"usertext\">" +
